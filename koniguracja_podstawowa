@@ -1,0 +1,38 @@
+# konfiguracja podstawowa
+
+sudo su
+
+apt update
+apt upgrade
+
+dpkg-reconfigure dash
+--> No
+
+service apparmor stop
+update-rc.d -f apparmor remove 
+apt remove apparmor apparmor-utils
+
+apt install ntp ntpdate
+
+apt install ssh
+nano /etc/ssh/sshd_config
+--> Port 2202
+--> PermitRootLogin yes
+service ssh restart
+
+passwd
+
+nano /etc/network/interfaces
+
+auto enp0s3
+iface enp0s3 inet static
+
+address 192.168.254.110
+netmask 255.255.255.0
+network 192.168.254.0
+broadcast 192.168.254.255
+gateway 192.168.254.1
+dns-nameservers 8.8.8.8 8.8.4.4
+
+reboot
+
